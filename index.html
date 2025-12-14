@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>.Payments - Task Timer & Payment Tracker</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>💰 .Payments</h1>
+            <p class="subtitle">Task Timer & Payment Tracker</p>
+        </header>
+
+        <div class="settings-section">
+            <h2>⚙️ Settings</h2>
+            <div class="settings-grid">
+                <div class="setting-item">
+                    <label for="hourlyRate">Hourly Rate ($):</label>
+                    <input type="number" id="hourlyRate" value="25" min="0" step="0.01">
+                </div>
+                <div class="setting-item">
+                    <label for="dailyRate">Daily Rate ($):</label>
+                    <input type="number" id="dailyRate" value="200" min="0" step="0.01">
+                </div>
+                <div class="setting-item">
+                    <label for="monthlyBase">Monthly Base Salary ($):</label>
+                    <input type="number" id="monthlyBase" value="5000" min="0" step="0.01">
+                </div>
+                <div class="setting-item">
+                    <label for="taxRate">Tax/Social Rate (%):</label>
+                    <input type="number" id="taxRate" value="15" min="0" max="100" step="0.1">
+                </div>
+            </div>
+        </div>
+
+        <div class="timer-section">
+            <h2>⏱️ Current Task</h2>
+            <div class="task-input-group">
+                <input type="text" id="taskName" placeholder="Enter task name..." />
+                <input type="number" id="taskValue" placeholder="Task value ($)" min="0" step="0.01" />
+            </div>
+            <div class="timer-display">
+                <div class="time-digits" id="timerDisplay">00:00:00</div>
+                <div class="timer-controls">
+                    <button id="startBtn" class="btn btn-start">▶️ Start</button>
+                    <button id="pauseBtn" class="btn btn-pause" disabled>⏸️ Pause</button>
+                    <button id="stopBtn" class="btn btn-stop" disabled>⏹️ Stop</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="tasks-section">
+            <h2>📋 Completed Tasks</h2>
+            <div id="tasksList" class="tasks-list"></div>
+        </div>
+
+        <div class="summary-section">
+            <h2>💵 Payment Summary</h2>
+            <div class="summary-grid">
+                <div class="summary-card">
+                    <div class="summary-label">Today's Earnings</div>
+                    <div class="summary-value" id="todayEarnings">$0.00</div>
+                </div>
+                <div class="summary-card">
+                    <div class="summary-label">This Month</div>
+                    <div class="summary-value" id="monthEarnings">$0.00</div>
+                </div>
+                <div class="summary-card">
+                    <div class="summary-label">Total Hours Today</div>
+                    <div class="summary-value" id="todayHours">0.00h</div>
+                </div>
+                <div class="summary-card">
+                    <div class="summary-label">Tax/Social Deduction</div>
+                    <div class="summary-value" id="taxDeduction">$0.00</div>
+                </div>
+                <div class="summary-card highlight">
+                    <div class="summary-label">Net Pay (After Tax)</div>
+                    <div class="summary-value" id="netPay">$0.00</div>
+                </div>
+            </div>
+            <div class="actions">
+                <button id="endDayBtn" class="btn btn-primary">🌙 End Day Payment</button>
+                <button id="clearDataBtn" class="btn btn-danger">🗑️ Clear All Data</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

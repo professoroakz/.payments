@@ -1,0 +1,18 @@
+{
+  "name": ".payments",
+  "version": "1.0.0",
+  "description": "Cross-platform task timer with payment tracking and evaluation",
+  "main": "index.html",
+  "scripts": {
+    "start": "python -m http.server 8000 || python3 -m http.server 8000",
+    "test": "echo \"No tests specified yet\" && exit 0"
+  },
+  "keywords": [
+    "task-timer",
+    "payment-tracking",
+    "time-management",
+    "salary-calculator"
+  ],
+  "author": "",
+  "license": "MIT"
+}
