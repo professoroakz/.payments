@@ -136,7 +136,10 @@ class PaymentTracker {
             this.timerInterval = null;
         }
 
-        this.elapsedTime = Date.now() - this.startTime;
+        // Calculate final elapsed time, accounting for paused state
+        if (!this.isPaused) {
+            this.elapsedTime = Date.now() - this.startTime;
+        }
         const durationSeconds = Math.floor(this.elapsedTime / 1000);
         const durationHours = durationSeconds / 3600;
 
@@ -283,10 +286,6 @@ class PaymentTracker {
         const dailyPayment = Math.max(todayEarnings, this.settings.dailyRate);
 
         // Record payment
-        if (!this.payments.daily) {
-            this.payments.daily = {};
-        }
-        
         this.payments.daily[todayKey] = {
             earnings: todayEarnings,
             hours: todayHours,
