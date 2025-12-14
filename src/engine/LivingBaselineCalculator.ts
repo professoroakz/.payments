@@ -23,6 +23,10 @@ export interface BaselineCoverageReport {
 }
 
 export class LivingBaselineCalculator {
+  // Default tax rate for net income estimation
+  // In production, this should be configurable per person/location
+  private static readonly DEFAULT_TAX_RATE = 0.25; // 25%
+
   /**
    * Calculate monthly living cost baseline
    */
@@ -73,7 +77,8 @@ export class LivingBaselineCalculator {
 
     // For now, assume 25% tax rate for net income estimation
     // In production, this should use actual tax calculations
-    const projectedNetIncome = projectedGrossIncome * 0.75;
+    const estimatedTaxRate = LivingBaselineCalculator.DEFAULT_TAX_RATE;
+    const projectedNetIncome = projectedGrossIncome * (1 - estimatedTaxRate);
 
     // Calculate required living cost
     const requiredLivingCost = this.calculateMonthlyBaseline(baseline);

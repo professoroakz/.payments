@@ -5,7 +5,7 @@ This document outlines the REST API design for the Task Value Ledger system.
 ## Base URL
 
 ```
-https://api.taskvalueled ger.com/v1
+https://api.taskvalueledger.com/v1
 ```
 
 ## Authentication

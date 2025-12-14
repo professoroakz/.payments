@@ -37,6 +37,11 @@ export const DEFAULT_VALUATION_CONFIG: ValuationConfig = {
 
 export class TaskValuationEngine {
   private config: ValuationConfig;
+  
+  // Constants for rate calculations
+  private static readonly HOURS_PER_DAY = 8;
+  private static readonly HOURS_PER_WEEK = 40;
+  private static readonly HOURS_PER_MONTH = 160; // 4 weeks * 40 hours
 
   constructor(config: ValuationConfig = DEFAULT_VALUATION_CONFIG) {
     this.config = config;
@@ -170,16 +175,13 @@ export class TaskValuationEngine {
         return ratePlan.baseRate;
       
       case 'daily':
-        // Assume 8-hour day
-        return ratePlan.baseRate / 8;
+        return ratePlan.baseRate / TaskValuationEngine.HOURS_PER_DAY;
       
       case 'weekly':
-        // Assume 40-hour week
-        return ratePlan.baseRate / 40;
+        return ratePlan.baseRate / TaskValuationEngine.HOURS_PER_WEEK;
       
       case 'monthly_salary':
-        // Assume 160 hours per month (4 weeks * 40 hours)
-        return ratePlan.baseRate / 160;
+        return ratePlan.baseRate / TaskValuationEngine.HOURS_PER_MONTH;
       
       default:
         return ratePlan.baseRate;

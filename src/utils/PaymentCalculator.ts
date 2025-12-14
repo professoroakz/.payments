@@ -312,11 +312,14 @@ export class PaymentCalculator {
         break;
       
       case 'percentage':
+        // Percentage: policy.value is a decimal (e.g., 0.15 for 15%)
         amount = baseValue * policy.value;
         calculationBasis = `${baseValue} * ${policy.value}`;
         break;
       
       case 'multiplier':
+        // Multiplier: policy.value is a factor (e.g., 1.5 for time-and-a-half)
+        // Semantically similar to percentage, but represents a multiplier concept
         amount = baseValue * policy.value;
         calculationBasis = `${baseValue} * ${policy.value}`;
         break;
