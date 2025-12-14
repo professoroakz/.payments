@@ -1,0 +1,32 @@
+{
+  "name": "@payments/task-value-ledger",
+  "version": "0.1.0",
+  "description": "Cross-platform task management with time tracking, role-based valuation, and payroll outputs",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "jest",
+    "lint": "eslint . --ext .ts",
+    "format": "prettier --write \"src/**/*.ts\""
+  },
+  "keywords": [
+    "task-management",
+    "time-tracking",
+    "payroll",
+    "workboard",
+    "payments",
+    "ledger"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "eslint": "^8.0.0",
+    "prettier": "^3.0.0",
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {}
+}

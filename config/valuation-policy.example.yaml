@@ -1,0 +1,297 @@
+# Task Valuation Engine Policy Configuration
+# This YAML file allows workspaces to encode their compensation philosophy
+# without changing code
+
+workspace:
+  id: "example-workspace-001"
+  name: "Example Tech Company"
+  currency: "USD"
+
+# Valuation configuration
+valuation:
+  applyComplexityMultiplier: true
+  applyQualityMultiplier: true
+  applyEstimateVariance: false
+  
+  multipliers:
+    complexity:
+      min: 0.8
+      max: 2.5
+    quality:
+      min: 0.8
+      max: 1.2
+
+# Role definitions with default weights
+roles:
+  - type: developer
+    name: "Software Developer"
+    defaultWeight: 0.70
+    description: "Primary code implementation"
+  
+  - type: qa
+    name: "QA Engineer"
+    defaultWeight: 0.15
+    description: "Testing and quality assurance"
+  
+  - type: reviewer
+    name: "Code Reviewer"
+    defaultWeight: 0.10
+    description: "Code review and approval"
+  
+  - type: scrum_master
+    name: "Scrum Master"
+    defaultWeight: 0.10
+    description: "Facilitation and impediment removal"
+  
+  - type: project_manager
+    name: "Project Manager"
+    defaultWeight: 0.15
+    description: "Planning and stakeholder management"
+  
+  - type: designer
+    name: "Designer"
+    defaultWeight: 0.20
+    description: "UI/UX design"
+  
+  - type: ops_sre
+    name: "DevOps/SRE"
+    defaultWeight: 0.15
+    description: "Deployment and operations"
+
+# Payment policies
+paymentPolicies:
+  # Time-based policies
+  - type: overtime
+    enabled: true
+    calculationMethod: multiplier
+    value: 1.5
+    conditions:
+      minHours: 40  # Per week
+    description: "Time and a half for overtime"
+  
+  - type: night_differential
+    enabled: true
+    calculationMethod: percentage
+    value: 0.15
+    conditions:
+      timeOfDay: night
+    description: "15% additional for night work"
+  
+  - type: weekend_differential
+    enabled: true
+    calculationMethod: percentage
+    value: 0.20
+    conditions:
+      dayOfWeek: weekend
+    description: "20% additional for weekend work"
+  
+  - type: holiday_differential
+    enabled: true
+    calculationMethod: multiplier
+    value: 2.0
+    conditions:
+      dayOfWeek: holiday
+    description: "Double pay for holidays"
+  
+  # Performance-based policies
+  - type: quality_bonus
+    enabled: true
+    calculationMethod: percentage
+    value: 0.05
+    conditions:
+      qualityThreshold: 0.90
+    description: "5% bonus for quality >= 90%"
+  
+  - type: delivery_bonus
+    enabled: true
+    calculationMethod: percentage
+    value: 0.05
+    description: "5% bonus for on-time, on-scope delivery"
+  
+  - type: milestone_bonus
+    enabled: true
+    calculationMethod: percentage
+    value: 0.10
+    description: "10% bonus for milestone completion"
+  
+  # Risk and complexity
+  - type: risk_premium
+    enabled: true
+    calculationMethod: percentage
+    value: 0.25  # Max premium
+    description: "Up to 25% premium for high-risk work"
+  
+  - type: urgency_fee
+    enabled: true
+    calculationMethod: tiered
+    tiers:
+      - level: low
+        value: 0.0
+      - level: medium
+        value: 0.05
+      - level: high
+        value: 0.15
+      - level: critical
+        value: 0.30
+    description: "Urgency-based fee"
+  
+  # Role allocations
+  - type: scrum_ceremonies
+    enabled: true
+    calculationMethod: fixed
+    description: "Time spent in scrum ceremonies"
+  
+  - type: code_review
+    enabled: true
+    calculationMethod: fixed
+    description: "Time spent reviewing code"
+  
+  - type: documentation
+    enabled: true
+    calculationMethod: fixed
+    description: "Time spent on documentation"
+  
+  # On-call
+  - type: on_call_pay
+    enabled: true
+    calculationMethod: percentage
+    value: 0.25
+    description: "25% of base for standby time"
+  
+  - type: call_out_pay
+    enabled: true
+    calculationMethod: multiplier
+    value: 2.0
+    description: "Double time for actual call-outs"
+
+# Cost profile
+costProfile:
+  country: "US"
+  name: "US Standard Cost"
+  payrollBurdenRate: 0.30
+  toolingCostPerMonth: 500
+  overheadAllocationRate: 0.25
+  contingencyRate: 0.10
+
+# Rate plan templates
+ratePlanTemplates:
+  - name: "Senior Engineer"
+    type: hourly
+    baseRate: 125.00
+    overtimeMultiplier: 1.5
+    nightDifferential: 0.20
+    weekendDifferential: 0.25
+    holidayDifferential: 1.0
+  
+  - name: "Mid-level Engineer"
+    type: hourly
+    baseRate: 85.00
+    overtimeMultiplier: 1.5
+    nightDifferential: 0.15
+    weekendDifferential: 0.20
+    holidayDifferential: 0.75
+  
+  - name: "Junior Engineer"
+    type: hourly
+    baseRate: 45.00
+    overtimeMultiplier: 1.5
+    nightDifferential: 0.15
+    weekendDifferential: 0.20
+    holidayDifferential: 0.50
+  
+  - name: "Contractor"
+    type: hourly
+    baseRate: 150.00
+    overtimeMultiplier: 1.0
+  
+  - name: "Salaried Employee"
+    type: monthly_salary
+    baseRate: 8000.00
+    overtimeMultiplier: 1.5
+
+# Living baseline templates
+livingBaselineTemplates:
+  - name: "Single Person - Urban"
+    currency: "USD"
+    breakdown:
+      rent: 1800
+      utilities: 150
+      internetMobile: 100
+      homeInsurance: 50
+      healthExpenses: 300
+      food: 500
+      transportation: 200
+      childcare: 0
+      debtPayments: 200
+      clothing: 100
+      medicine: 50
+      emergencyFundSavings: 300
+      leisureSocial: 200
+      taxesFees: 150
+  
+  - name: "Family with Children"
+    currency: "USD"
+    breakdown:
+      rent: 2800
+      utilities: 250
+      internetMobile: 150
+      homeInsurance: 100
+      healthExpenses: 600
+      food: 1200
+      transportation: 400
+      childcare: 2000
+      debtPayments: 500
+      clothing: 250
+      medicine: 100
+      emergencyFundSavings: 500
+      leisureSocial: 300
+      taxesFees: 250
+
+# Automation rules
+automationRules:
+  - name: "Auto-add scrum overhead"
+    trigger: "task_created"
+    condition:
+      projectType: "agile"
+    action:
+      type: "add_time_allocation"
+      role: "scrum_master"
+      hours: 0.5
+      description: "Scrum ceremony overhead"
+  
+  - name: "Auto-add review time"
+    trigger: "task_marked_for_review"
+    action:
+      type: "add_time_allocation"
+      role: "reviewer"
+      hours: 0.25
+      description: "Code review allocation"
+  
+  - name: "Flag long-running tasks"
+    trigger: "task_duration_exceeded"
+    condition:
+      actualVsEstimate: 1.5
+    action:
+      type: "flag_for_review"
+      description: "Actual time exceeds estimate by 50%"
+
+# Reporting configuration
+reporting:
+  defaultPeriod: "monthly"
+  includeLivingBaseline: true
+  includeCostBreakdown: true
+  includeParticipantDetails: true
+  formats:
+    - "json"
+    - "csv"
+    - "pdf"
+
+# Compliance settings
+compliance:
+  enableAuditTrail: true
+  requireApprovalForLocking: true
+  approvalRoles:
+    - "project_manager"
+    - "client_approver"
+  dataRetentionDays: 2555  # 7 years
+  privacyMode: "minimal"  # minimal, standard, detailed
